@@ -7,6 +7,7 @@
     <title>Django Blog</title>
 </head>
 <body>
+<header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Django Girls Blog</a>
@@ -47,16 +48,19 @@
         </div>
     </div>
 </nav>
-<div class="container-md">
+</header>
+
+<div class="container-fluid">
     <div class="card-group row-cols-1 row-cols-md-2 g-4">
         {% for post in posts %}
-            <div class="card text-dark bg-light border-primary mb-3">
+            <div class="card-row text-dark bg-light" style="max-height:30em">
                 <div class="card-header">
-                    Featured
+                    <h4 class="card-title mb-0">{{ post.title }}</h4>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title mb-0">{{ post.title }}</h4>
-                    <p class="card-text">{{ post.text|linebreaksbr }}</p>
+                    <div data-spy="scroll" data-target="#cardbody" data-offset="0">
+                        <p class="card-text" id="cardbody">{{ post.text|linebreaksbr }}</p>
+                    </div>
                     <div class="card-footer text-muted">
                         <time>published: {{ post.published_date }}</time>
                     </div>
